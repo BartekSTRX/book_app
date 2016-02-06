@@ -1,0 +1,12 @@
+﻿@using BookWebMVC.ViewModels
+@model LoginViewModel
+
+<form method="POST">
+    <label>@nameof(LoginViewModel.Username)</label>
+    <input name="@nameof(LoginViewModel.Username)"/>
+    
+    <label>@nameof(LoginViewModel.Password)</label>
+    <input name="@nameof(LoginViewModel.Password)" type="password"/>
+
+    <input type="submit" value="login"/>
+</form>

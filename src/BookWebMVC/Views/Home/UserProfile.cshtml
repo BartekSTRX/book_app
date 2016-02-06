@@ -1,0 +1,12 @@
+﻿@using BookWebMVC.Data.Model
+
+@model IEnumerable<BookWebUser>
+
+@User.Identity.Name
+
+@Html.ActionLink("logout", "Logout", "Auth")
+
+@foreach (var user in Model)
+{
+    @user.UserName
+}
