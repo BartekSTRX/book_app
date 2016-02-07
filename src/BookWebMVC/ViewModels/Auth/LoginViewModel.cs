@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BookWebMVC.Data.Model;
 
-namespace BookWebMVC.ViewModels
+namespace BookWebMVC.ViewModels.Auth
 {
     public class LoginViewModel
     {

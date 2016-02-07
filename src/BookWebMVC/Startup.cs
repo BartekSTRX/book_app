@@ -10,6 +10,7 @@ using BookWebMVC.Data;
 using BookWebMVC.Data.Core;
 using BookWebMVC.Data.Model;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Data.Entity;
 
 namespace BookWebMVC
 {
@@ -29,11 +30,13 @@ namespace BookWebMVC
             services.AddIdentity<BookWebUser, IdentityRole>(conf =>
             {
                 // TODO configure
-            }).AddEntityFrameworkStores<BookWebContext>();
+            }).AddEntityFrameworkStores<BookWebContext>()
+            .AddDefaultTokenProviders();
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<BookWebContext>();
+                .AddDbContext<BookWebContext>(/*options =>
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]*/);
 
             services.AddScoped<BookWebContext>();
             services.AddTransient<DataSeeder>();
@@ -49,11 +52,7 @@ namespace BookWebMVC
 
             app.UseMvc(conf =>
             {
-                conf.MapRoute("DefaultRoute", "{controller}/{action}/{id?}", defaults: new
-                {
-                    controller = "Home",
-                    action = "Index"
-                });
+                conf.MapRoute("DefaultRoute", "{controller=Home}/{action=Index}/{id?}");
             });
 
             await dataSeeder.SeedDataAsync();
