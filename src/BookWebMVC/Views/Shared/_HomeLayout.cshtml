@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="~/css/cover.css" rel="stylesheet"/>
+    <link href="~/css/login-validation.css" rel="stylesheet"/>
+}
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">BookWeb</h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li class= @( ViewBag.Nav == "Index" ? "active" : "") >
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class= @( ViewBag.Nav == "About" ? "active" : "")>
+                                <a asp-controller="Home" asp-action="About">About</a>
+                            </li>
+                            <li class= @( ViewBag.Nav == "Contact" ? "active" : "")>
+                                <a asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class= @( ViewBag.Nav == "Login" ? "active" : "")>
+                                <a asp-controller="Auth" asp-action="Login">Log in</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="inner cover">
+                @RenderBody()
+            </div>
+
+            <div class="mastfoot">
+                <div class="inner">
+                    <p>Cover template for Bootstrap</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

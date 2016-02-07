@@ -2,12 +2,22 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatibile" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootswatch/readable/bootstrap.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
 </head>
 <body>
-    <div>
+    
         @RenderBody()
-    </div>
+    
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

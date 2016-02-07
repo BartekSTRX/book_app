@@ -23,6 +23,8 @@ namespace BookWebMVC.Controllers.Web
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.Nav = "Login";
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("UserProfile", "Home");
@@ -31,11 +33,12 @@ namespace BookWebMVC.Controllers.Web
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel viewModel)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(vm.Username, vm.Password, vm.Remember, false);
 
                 if (result.Succeeded)
                 {

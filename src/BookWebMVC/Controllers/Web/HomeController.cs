@@ -21,6 +21,19 @@ namespace BookWebMVC.Controllers.Web
         // GET: /<controller>/
         public IActionResult Index()
         {
+            ViewBag.Nav = "Index";
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewBag.Nav = "About";
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewBag.Nav = "Contact";
             return View();
         }
 

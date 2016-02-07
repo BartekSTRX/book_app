@@ -1,4 +1,5 @@
 {
+  "webroot":  "wwwroot",
   "version": "1.0.0-*",
   "compilationOptions": {
     "emitEntryPoint": true
@@ -12,6 +13,7 @@
     "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
     "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "EntityFramework.Commands": "7.0.0-rc1-final"
