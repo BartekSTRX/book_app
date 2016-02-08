@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="~/css/layout.css" rel="stylesheet"/>
+}
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" asp-controller="User" asp-action="Dashboard">BookWeb</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a>News</a></li>
+                <li><a>Books</a></li>
+                <li><a>Authors</a></li>
+                <li><a>Search</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>Dashboard</a></li>
+                <li><a>Profile</a></li>
+                <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    @RenderBody()
+</div>

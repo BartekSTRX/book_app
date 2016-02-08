@@ -7,8 +7,6 @@ using BookWebMVC.ViewModels.Auth;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace BookWebMVC.Controllers.Web
 {
     public class AuthController : Controller
@@ -40,7 +38,7 @@ namespace BookWebMVC.Controllers.Web
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(newUser, isPersistent: false);
-                    return RedirectToAction("UserProfile", "Home");
+                    return RedirectToAction("UserProfile", "User");
                 }
 
                 foreach (var error in result.Errors)
@@ -59,7 +57,7 @@ namespace BookWebMVC.Controllers.Web
 
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("UserProfile", "Home");
+                return RedirectToAction("UserProfile", "User");
             }
             return View();
         }
@@ -74,7 +72,7 @@ namespace BookWebMVC.Controllers.Web
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("UserProfile", "Home");
+                    return RedirectToAction("UserProfile", "User");
                 }
                 else
                 {
