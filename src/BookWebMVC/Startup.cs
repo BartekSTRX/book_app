@@ -11,6 +11,7 @@ using BookWebMVC.Data.Core;
 using BookWebMVC.Data.Model;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.Extensions.Configuration;
 
 namespace BookWebMVC
 {
@@ -20,6 +21,19 @@ namespace BookWebMVC
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            /* configure specifying settings */
+            var builder = new ConfigurationBuilder();
+            builder.AddInMemoryCollection();
+
+            var config = builder.Build();
+            config["ConnectionStringDefault"] = 
+                "Server=(localdb)\\MSSQLLocalDB;Database=BooksDB;Trusted_Connection=true;MultipleActiveResultSets=true";
+
+            /* configure providing settings */
+            services.AddOptions();
+            services.Configure<ConnectionString>(config);
+
+
             services.AddMvc(conf =>
             {
 #if !DEBUG
