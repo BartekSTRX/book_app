@@ -38,7 +38,7 @@ namespace BookWebMVC.Controllers.Web
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(newUser, isPersistent: false);
-                    return RedirectToAction("UserProfile", "User");
+                    return RedirectToAction("Profile", "User");
                 }
 
                 foreach (var error in result.Errors)
@@ -57,7 +57,7 @@ namespace BookWebMVC.Controllers.Web
 
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("UserProfile", "User");
+                return RedirectToAction("Profile", "User");
             }
             return View();
         }
@@ -72,7 +72,7 @@ namespace BookWebMVC.Controllers.Web
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("UserProfile", "User");
+                    return RedirectToAction("Profile", "User");
                 }
                 else
                 {

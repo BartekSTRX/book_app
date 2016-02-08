@@ -19,7 +19,7 @@ namespace BookWebMVC.Controllers.Web
         }
 
         [Authorize]
-        public IActionResult UserProfile()
+        public IActionResult Profile()
         {
             //TODO
             return View();

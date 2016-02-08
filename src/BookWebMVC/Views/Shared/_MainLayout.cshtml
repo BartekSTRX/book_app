@@ -22,8 +22,8 @@
                 <li><a>Search</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a>Dashboard</a></li>
-                <li><a>Profile</a></li>
+                <li><a asp-controller="User" asp-action="Dashboard">Dashboard</a></li>
+                <li><a asp-controller="User" asp-action="Profile">Profile</a></li>
                 <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
             </ul>
         </div>
