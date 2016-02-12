@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookWebMVC
+namespace BookWebMVC.Data.Model
 {
-    public class ConnectionString
+    public enum Genre
     {
-        public string ConnectionStringDefault { get; set; }
+        History = 1, Fantasy, Biography, ScienceFiction, Drama
     }
 }

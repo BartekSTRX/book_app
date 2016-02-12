@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BookWebMVC.Configuration;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
@@ -12,6 +14,7 @@ using BookWebMVC.Data.Model;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace BookWebMVC
 {
@@ -23,15 +26,20 @@ namespace BookWebMVC
         {
             /* configure specifying settings */
             var builder = new ConfigurationBuilder();
-            builder.AddInMemoryCollection();
+            builder.AddInMemoryCollection()
+                .AddEnvironmentVariables();
 
             var config = builder.Build();
             config["ConnectionStringDefault"] = 
                 "Server=(localdb)\\MSSQLLocalDB;Database=BooksDB;Trusted_Connection=true;MultipleActiveResultSets=true";
+            var paths = config["BookWebPictures"];
+            config["PicturesFolderProd"] = Path.Combine(paths, "Prod");
+            config["PicturesFolderSeed"] = Path.Combine(paths, "Seed");
 
             /* configure providing settings */
             services.AddOptions();
             services.Configure<ConnectionString>(config);
+            services.Configure<PicturesFolder>(config);
 
 
             services.AddMvc(conf =>
