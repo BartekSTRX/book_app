@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D4BA5D27-538A-4069-AA41-75FC70219C19}"
+	ProjectSection(SolutionItems) = preProject
+		src\BookWebMVC\readme.md = src\BookWebMVC\readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5D77115-A259-4E03-BD22-C5A69FE26C56}"
 	ProjectSection(SolutionItems) = preProject
