@@ -54,20 +54,16 @@ namespace BookWebMVC.Data
                 await _userManager.CreateAsync(user2, "P@ssw0rd!2");
             }
 
-            var catPic = new Picture
-            {
-                Uploaded = DateTime.Now, Uploader = user1,
-                UploaderId = user1.Id,
-                Path = Path.Combine(_options.Value.PicturesFolderSeed, "Mackiewicz.jpg")
-            };
+            var catPic = CreatePicture(user2, "Mackiewicz.jpg");
             _context.Add(catPic);
-            var terryPic = new Picture
-            {
-                Uploaded = DateTime.Now, Uploader = user2,
-                UploaderId = user2.Id,
-                Path = Path.Combine(_options.Value.PicturesFolderSeed, "Pratchett.jpg")
-            };
+            var terryPic = CreatePicture(user1, "Pratchett.jpg");
             _context.Add(terryPic);
+            var martinPic = CreatePicture(user1, "Martin.jpg");
+            _context.Add(martinPic);
+            var rothbardPic = CreatePicture(user1, "Rothbard.jpg");
+            _context.Add(rothbardPic);
+            var sapkowskiPic = CreatePicture(user1, "Sapkowski.jpg");
+            _context.Add(sapkowskiPic);
             _context.SaveChanges();
 
             var cat = new Author
@@ -88,9 +84,47 @@ namespace BookWebMVC.Data
                 ProfilePictureId = terryPic.Id, ProfilePicture = terryPic
             };
             _context.Authors.Add(pratchet);
+            var martin = new Author
+            {
+                FirstName = "George", LastName = "Matrin",
+                BirthDate = new DateTime(1948, 08, 20), BirthPlace = "Bayonne, USA",
+                DeathDate = null, DeathPlace = null,
+                Description = "A Song of Ice and Fire author, Game of Thrones tv series screenplay writer",
+                ProfilePictureId = martinPic.Id, ProfilePicture = martinPic
+            };
+            _context.Authors.Add(martin);
+            var rothbard = new Author
+            {
+                FirstName = "Murray", LastName = "Rothbard",
+                BirthDate = new DateTime(1926, 03, 26), BirthPlace = "New York, USA",
+                DeathDate = new DateTime(1995, 01, 07), DeathPlace = null,
+                Description = @"Murray Newton Rothbard was an influential American historian, natural law theorist, Aristotelian and economist of the Austrian School who helped define modern libertarianism. Rothbard took the Austrian School's emphasis on spontaneous order and condemnation of central planning to an individualist anarchist conclusion, which he termed ""anarcho - capitalism"".",
+                ProfilePictureId = rothbardPic.Id, ProfilePicture = rothbardPic
+            };
+            _context.Authors.Add(rothbard);
+            var sapkowski = new Author
+            {
+                FirstName = "Andrzej", LastName = "Sapkowski",
+                BirthDate = new DateTime(1948, 06, 21), BirthPlace = "Łódź, Poland",
+                DeathDate = null, DeathPlace = null,
+                Description = "A Polish fantasy writer. Sapkowski studied economics, and before turning to writing, he had worked as a senior sales representative for a foreign trade company. His first short story, The Witcher(Wiedźmin), was published in Fantastyka, Poland's leading fantasy literary magazine, in 1986 and was enormously successful both with readers and critics. Sapkowski has created a cycle of tales based on the world of The Witcher, comprising three collections of short stories and five novels. This cycle and his many other works have made him one of the best-known fantasy authors in Poland in the 1990s.",
+                ProfilePictureId = sapkowskiPic.Id, ProfilePicture = sapkowskiPic
+            };
+            _context.Authors.Add(sapkowski);
             _context.SaveChanges();
 
             
+        }
+
+        private Picture CreatePicture(BookWebUser user, string filename)
+        {
+            return new Picture
+            {
+                Uploaded = DateTime.Now,
+                Uploader = user,
+                UploaderId = user.Id,
+                Path = Path.Combine(_options.Value.PicturesFolderSeed, filename)
+            };
         }
     }
 }

@@ -1,23 +1,37 @@
-﻿@model IEnumerable<BookWebMVC.Data.Model.Author>
+﻿@model IList<BookWebMVC.Data.Model.Author>
 
-<div class="row">
-    @foreach (var author in Model)
-    {
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <img src="@Url.Action("Show", "Image", new {id = author.ProfilePictureId})" 
-                     alt="@($"{author.FirstName} {author.LastName}")"/>
+@{
+    var rows = Math.Ceiling(Model.Count / 4.0);
+}
+@for (var row = 0; row < rows; row++)
+{
+    <div class="row">
+        @for (var col = 0; col < 4; col++)
+        {
+            if (row * 4 + col >= Model.Count)
+            {
+                break;
+            }
 
-                <div class="caption">
-                    <h3> @author.FirstName @author.LastName </h3>
-                    <p>
-                         @(author.Description.Length > 100 ? $"{author.Description.Substring(0, 100)}..." : author.Description)
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary" role="button">Details</a>
-                    </p>
+            var author = Model[row * 4 + col];
+
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="@Url.Action("Show", "Image", new {id = author.ProfilePictureId})"
+                         alt="@($"{author.FirstName} {author.LastName}")"
+                         style="width: 100%" />
+
+                    <div class="caption">
+                        <h3> @author.FirstName @author.LastName </h3>
+                        <p>
+                            @(author.Description.Length > 100 ? $"{author.Description.Substring(0, 100)}..." : author.Description)
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary" role="button">Details</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}

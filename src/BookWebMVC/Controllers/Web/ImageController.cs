@@ -30,11 +30,20 @@ namespace BookWebMVC.Controllers.Web
             }
             try
             {
-                var image = Image.FromFile(picture.Path);
+                var source = Image.FromFile(picture.Path) as Bitmap;
+                var size = Math.Min(source.Height, source.Width);
+                var x = (source.Width - size)/2;
+                var y = (source.Height - size)/2;
+                var target = new Bitmap(size, size);
+
+                using (var graphics = Graphics.FromImage(target))
+                {
+                    graphics.DrawImage(source, 0, 0, new RectangleF(x, y, size, size), GraphicsUnit.Pixel);
+                }
 
                 using (var stream = new MemoryStream())
                 {
-                    image.Save(stream, ImageFormat.Jpeg);
+                    target.Save(stream, ImageFormat.Jpeg);
                     return File(stream.ToArray(), "image/jpg");
                 }
             }
