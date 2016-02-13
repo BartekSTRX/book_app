@@ -21,7 +21,7 @@ namespace BookWebMVC.Controllers.Web
             _context = context;
         }
 
-        public IActionResult Show(int id)
+        public IActionResult Show(int id, bool clip = false)
         {
             var picture = _context.Pictures.SingleOrDefault(p => p.Id == id);
             if (picture == null)
@@ -31,14 +31,23 @@ namespace BookWebMVC.Controllers.Web
             try
             {
                 var source = Image.FromFile(picture.Path) as Bitmap;
-                var size = Math.Min(source.Height, source.Width);
-                var x = (source.Width - size)/2;
-                var y = (source.Height - size)/2;
-                var target = new Bitmap(size, size);
 
-                using (var graphics = Graphics.FromImage(target))
+                Bitmap target;
+                if (clip)
                 {
-                    graphics.DrawImage(source, 0, 0, new RectangleF(x, y, size, size), GraphicsUnit.Pixel);
+                    var size = Math.Min(source.Height, source.Width);
+                    var x = (source.Width - size)/2;
+                    var y = (source.Height - size)/2;
+                    target = new Bitmap(size, size);
+
+                    using (var graphics = Graphics.FromImage(target))
+                    {
+                        graphics.DrawImage(source, 0, 0, new RectangleF(x, y, size, size), GraphicsUnit.Pixel);
+                    }                    
+                }
+                else
+                {
+                    target = source;
                 }
 
                 using (var stream = new MemoryStream())

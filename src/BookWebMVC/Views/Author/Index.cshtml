@@ -17,9 +17,8 @@
 
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img src="@Url.Action("Show", "Image", new {id = author.ProfilePictureId})"
-                         alt="@($"{author.FirstName} {author.LastName}")"
-                         style="width: 100%" />
+                    <img src="@Url.Action("Show", "Image", new {id = author.ProfilePictureId, clip = true})"
+                         alt="@($"{author.FirstName} {author.LastName}")" />
 
                     <div class="caption">
                         <h3> @author.FirstName @author.LastName </h3>

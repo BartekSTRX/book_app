@@ -12,7 +12,7 @@ namespace BookWebMVC.Data.Core
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Picture> Pictures { get; set; }
-
+        public DbSet<Book> Books { get; set; }
 
         public BookWebContext(IOptions<ConnectionString> options)
         {

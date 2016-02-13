@@ -54,15 +54,15 @@ namespace BookWebMVC.Data
                 await _userManager.CreateAsync(user2, "P@ssw0rd!2");
             }
 
-            var catPic = CreatePicture(user2, "Mackiewicz.jpg");
+            var catPic = LoadPicture(user2, "Mackiewicz.jpg");
             _context.Add(catPic);
-            var terryPic = CreatePicture(user1, "Pratchett.jpg");
+            var terryPic = LoadPicture(user1, "Pratchett.jpg");
             _context.Add(terryPic);
-            var martinPic = CreatePicture(user1, "Martin.jpg");
+            var martinPic = LoadPicture(user1, "Martin.jpg");
             _context.Add(martinPic);
-            var rothbardPic = CreatePicture(user1, "Rothbard.jpg");
+            var rothbardPic = LoadPicture(user1, "Rothbard.jpg");
             _context.Add(rothbardPic);
-            var sapkowskiPic = CreatePicture(user1, "Sapkowski.jpg");
+            var sapkowskiPic = LoadPicture(user1, "Sapkowski.jpg");
             _context.Add(sapkowskiPic);
             _context.SaveChanges();
 
@@ -113,10 +113,33 @@ namespace BookWebMVC.Data
             _context.Authors.Add(sapkowski);
             _context.SaveChanges();
 
-            
+
+            var colorOfMagicPic = LoadPicture(user2, "ColorOfMagic.jpg");
+            _context.Pictures.Add(colorOfMagicPic);
+            var mortPic = LoadPicture(user2, "Mort.jpg");
+            _context.Pictures.Add(mortPic);
+            _context.SaveChanges();
+
+            var colorOfMagic = new Book
+            {
+                Authors = new List<Author> { pratchet }, Genre = Genre.Fantasy,
+                CoverPicture = colorOfMagicPic, CoverPictureId = colorOfMagicPic.Id,
+                Descrption = "First novel of discworld series by Terry Pratchett",
+                Title = "Color of Magic", YearPublished = 1983
+            };
+            _context.Books.Add(colorOfMagic);
+            var mort = new Book
+            {
+                Authors = new List<Author> { pratchet }, Genre = Genre.Fantasy,
+                CoverPicture = mortPic, CoverPictureId = mortPic.Id,
+                Descrption = "Novel of discworld series by Terry Pratchett",
+                Title = "Mort", YearPublished = 1987
+            };
+            _context.Books.Add(mort);
+            _context.SaveChanges();
         }
 
-        private Picture CreatePicture(BookWebUser user, string filename)
+        private Picture LoadPicture(BookWebUser user, string filename)
         {
             return new Picture
             {
