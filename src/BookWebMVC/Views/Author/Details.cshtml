@@ -1,0 +1,76 @@
+﻿@model BookWebMVC.ViewModels.Author.AuthorDetailsViewModel
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"> @Model.Name </h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="@Url.Action("Show", "Image", new {id = Model.ProfilePictureId, clip = true})"
+                             alt="@Model.ProfilePictureAlt"
+                             class="img-responsive img-circle" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(a => a.BirthDate)</td>
+                                    <td>@Html.DisplayTextFor(a => a.BirthDate)</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(a => a.BirthPlace)</td>
+                                    <td>@Html.DisplayTextFor(a => a.BirthPlace)</td>
+                                </tr>
+                                @if (Model.DeathDate.HasValue)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(a => a.DeathDate)</td>
+                                        <td>@Html.DisplayTextFor(a => a.DeathDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(a => a.DeathPlace)</td>
+                                        <td>@Html.DisplayTextFor(a => a.DeathPlace)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <a href="@Url.Action("Edit", new { id = Model.Id})" type="button" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div class="list-group">
+            @foreach (var book in Model.Books)
+            {
+                <a href="#" class="list-group-item">
+                    <h3>@book.Title</h3>
+                    <p>
+                        @book.Descrption
+                    </p>
+                </a>
+            }
+        </div>
+    </div>
+
+</div>

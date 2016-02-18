@@ -118,6 +118,10 @@ namespace BookWebMVC.Data
             _context.Pictures.Add(colorOfMagicPic);
             var mortPic = LoadPicture(user2, "Mort.jpg");
             _context.Pictures.Add(mortPic);
+            var wyrdSistertPic = LoadPicture(user1, "WyrdSisters.jpg");
+            _context.Pictures.Add(wyrdSistertPic);
+            var guardsPic = LoadPicture(user2, "GuardsGuards.jpg");
+            _context.Pictures.Add(guardsPic);
             _context.SaveChanges();
 
             var colorOfMagic = new Book
@@ -136,6 +140,46 @@ namespace BookWebMVC.Data
                 Title = "Mort", YearPublished = 1987
             };
             _context.Books.Add(mort);
+            var wyrdSisters = new Book
+            {
+                Authors = new List<Author> { pratchet}, Genre = Genre.Fantasy,
+                CoverPicture = wyrdSistertPic, CoverPictureId = wyrdSistertPic.Id,
+                Descrption = "Terry Pratchett’s sixth Discworld novel, an adaptation of Shakespeare’s Macbeth, opens with three witches gathered on a lonely heath.",
+                Title = "Wyrd Sisters", YearPublished = 1988
+            };
+            _context.Books.Add(wyrdSisters);
+            var guards = new Book
+            {
+                Authors = new List<Author> { pratchet}, Genre = Genre.Fantasy,
+                CoverPicture = guardsPic, CoverPictureId = guardsPic.Id,
+                Descrption = "In the eigth Discworld novel, Captain Sam Vimes of the city’s ramshackle Night Watch is facing an insurrection.",
+                Title = "Guards! Guards!", YearPublished = 1989
+            };
+            _context.Books.Add(guards);
+            _context.SaveChanges();
+
+            var dostojewskiPic = LoadPicture(user1, "Dostojewski.jpg");
+            _context.Pictures.Add(dostojewskiPic);
+            var kluczPic = LoadPicture(user1, "KluczDoPilsudskiego.jpg");
+            _context.Pictures.Add(kluczPic);
+            _context.SaveChanges();
+
+            var dostojewski = new Book
+            {
+                Authors = new List<Author> { cat}, Genre = Genre.Biography,
+                CoverPicture = kluczPic, CoverPictureId = kluczPic.Id,
+                Descrption = "Fiodor Dostojewski biography by Cat-Mackiewicz",
+                Title = "Dostojewski", YearPublished = 2013
+            };
+            _context.Books.Add(dostojewski);
+            var klucz = new Book
+            {
+                Authors = new List<Author> { cat}, Genre = Genre.Biography,
+                CoverPicture = kluczPic, CoverPictureId = kluczPic.Id,
+                Descrption = "Józef Piłsudski biography by Cat-Mackiewicz",
+                Title = "Klucz do Piłsudskiego", YearPublished = 2013
+            };
+            _context.Books.Add(klucz);
             _context.SaveChanges();
         }
 
